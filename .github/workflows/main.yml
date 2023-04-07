@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Build Angular App
-        run: ll && npm run build
+        run: ls -l && npm run build
 
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
