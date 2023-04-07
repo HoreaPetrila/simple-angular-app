@@ -21,7 +21,7 @@ jobs:
         run: npm install
 
       - name: Build Angular App
-        run: pwd && npm run build
+        run: cd .. && cd simple-app && pwd && npm run build
 
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
