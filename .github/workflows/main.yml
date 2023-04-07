@@ -18,7 +18,7 @@ jobs:
           node-version: '14'
 
       - name: Install Dependencies
-        run: cd simple-app && npm install
+        run: cd simple-app && npm ci
 
       - name: Build Angular App
         run: cd simple-app && npm run build
