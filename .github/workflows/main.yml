@@ -17,14 +17,8 @@ jobs:
       - name: Build Angular App
         run: cd simple-app && npm run build
       - name: Deploy to S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --follow-symlinks --exclude '**/node_modules/**' --delete
-          aws-s3-bucket: simple-money-tracker-fe
-          aws-region: eu-central-1
-          source-dir: dist/simple-app/*
-          exclude: '*.map'
+        run: |
+          aws s3 cp --recursive --exclude "*.map" dist/simple-app/ s3://simple-money-tracker-fe/
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_S3_BUCKET: simple-money-tracker-fe
