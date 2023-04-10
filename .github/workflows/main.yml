@@ -1,37 +1,29 @@
 name: Build and Deploy Angular App to S3
-
 on:
   push:
     branches:
       - main
-
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-
       - name: Install Node.js and NPM
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-
       - name: Install Dependencies
         run: cd simple-app && npm ci
-
       - name: Build Angular App
         run: cd simple-app && npm run build
-
       - name: Deploy to S3
-        run: cd simple-app
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --follow-symlinks --exclude '/node_modules/**' --delete
+          args: --follow-symlinks --exclude '**/node_modules/**' --delete
           aws-s3-bucket: simple-money-tracker-fe
           aws-region: eu-central-1
           source-dir: dist/simple-app
-          exclude: '*.map', '**/node_modules/**'
+          exclude: '*.map'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
