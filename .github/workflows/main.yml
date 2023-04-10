@@ -22,7 +22,7 @@ jobs:
           args: --follow-symlinks --exclude '**/node_modules/**' --delete
           aws-s3-bucket: simple-money-tracker-fe
           aws-region: eu-central-1
-          source-dir: dist/simple-app
+          source-dir: dist/simple-app/*
           exclude: '*.map'
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
