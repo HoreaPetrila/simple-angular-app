@@ -28,7 +28,7 @@ jobs:
         uses: jakejarvis/s3-sync-action@master
         with:
           args: --follow-symlinks --exclude '/node_modules/**' --delete
-          aws-s3-bucket: simple-angular-app
+          aws-s3-bucket: simple-money-tracker-fe
           aws-region: eu-central-1
           source-dir: dist/simple-app
           exclude: '*.map', '**/node_modules/**'
