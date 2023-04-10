@@ -27,7 +27,7 @@ jobs:
         run: cd simple-app
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --follow-symlinks --exclude '**/node_modules/**' --delete
+          args: --follow-symlinks --exclude '/node_modules/**' --delete
           aws-s3-bucket: simple-angular-app
           aws-region: eu-central-1
           source-dir: dist/simple-app
